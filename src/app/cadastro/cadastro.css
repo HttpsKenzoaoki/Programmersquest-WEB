@@ -1,0 +1,112 @@
+.cadastro-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1f1b46, #0c0d18 60%);
+  color: #e2e1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+}
+
+.cadastro-card {
+  width: 100%;
+  max-width: 430px;
+  background: rgba(40, 41, 53, 0.9);
+  border: 1px solid rgba(202, 190, 255, 0.3);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: inset 0 0 20px rgba(93, 63, 211, 0.4),
+    0 0 20px rgba(202, 190, 255, 0.2);
+}
+
+.cadastro-card h1 {
+  text-align: center;
+  color: #cabeff;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.cadastro-card > p {
+  text-align: center;
+  color: #c9c4d7;
+  margin-bottom: 28px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  color: #cabeff;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+input {
+  background: #12131d;
+  border: 1px solid #484554;
+  border-radius: 10px;
+  padding: 14px;
+  color: white;
+  outline: none;
+}
+
+input:focus {
+  border-color: #cabeff;
+  box-shadow: 0 0 8px rgba(202, 190, 255, 0.4);
+}
+
+form button {
+  margin-top: 18px;
+  background: #5d3fd3;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  filter: brightness(1.1);
+}
+
+.social {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(72, 69, 84, 0.5);
+  text-align: center;
+}
+
+.social p {
+  color: #c9c4d7;
+  margin-bottom: 14px;
+}
+
+.social div {
+  display: flex;
+  gap: 12px;
+}
+
+.social button {
+  flex: 1;
+  background: #1e1f2a;
+  color: white;
+  border: 1px solid #484554;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.login {
+  margin-top: 24px;
+  text-align: center;
+  color: #c9c4d7;
+}
+
+.login a {
+  color: #ffdb3c;
+}
