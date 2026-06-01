@@ -1,0 +1,141 @@
+.aula-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1f1b46, #12131d 60%);
+  color: #e2e1f1;
+  padding: 32px;
+  font-family: Arial, sans-serif;
+}
+
+.aula-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.aula-header {
+  background: rgba(30, 31, 42, 0.8);
+  border: 1px solid rgba(202, 190, 255, 0.18);
+  border-radius: 18px;
+  padding: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.aula-header h1 {
+  color: #cabeff;
+  font-size: 38px;
+}
+
+.aula-header p {
+  color: #c9c4d7;
+}
+
+.aula-header a {
+  background: #5d3fd3;
+  color: white;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.aula-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.conteudo,
+.jogo-card {
+  background: rgba(30, 31, 42, 0.78);
+  border: 1px solid rgba(202, 190, 255, 0.15);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: inset 0 0 18px rgba(93, 63, 211, 0.12);
+}
+
+.conteudo h2,
+.jogo-card h2 {
+  color: #cabeff;
+  margin-bottom: 14px;
+}
+
+.conteudo p,
+.jogo-card p,
+.conteudo li {
+  color: #c9c4d7;
+  line-height: 1.6;
+}
+
+.conteudo ul {
+  margin-left: 20px;
+}
+
+.exemplo {
+  background: #0c0d18;
+  border: 1px solid #484554;
+  border-radius: 14px;
+  padding: 18px;
+  margin: 22px 0;
+}
+
+.exemplo h3 {
+  color: #ffdb3c;
+  margin-bottom: 10px;
+}
+
+pre {
+  color: #ffb0d0;
+  white-space: pre-wrap;
+}
+
+.pergunta {
+  margin-top: 20px;
+}
+
+.pergunta h3 {
+  color: #ffdb3c;
+  margin-bottom: 14px;
+}
+
+.pergunta button {
+  display: block;
+  width: 100%;
+  background: #333440;
+  color: white;
+  border: 1px solid #484554;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pergunta button:hover {
+  background: #5d3fd3;
+}
+
+.finalizar {
+  width: 100%;
+  margin-top: 18px;
+  background: #ffdb3c;
+  color: #221b00;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .aula-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .aula-grid {
+    grid-template-columns: 1fr;
+  }
+}

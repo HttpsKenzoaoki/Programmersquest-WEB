@@ -48,7 +48,7 @@ export default function Missoes() {
 
           <div className="fase fase1 concluida">
             <button>✅</button>
-            <h3>Primeiro Código</h3>
+           <a href="/trilhas/primeiro-codigo" className="fase-link">✅</a>
             <p>Lógica básica</p>
           </div>
 
