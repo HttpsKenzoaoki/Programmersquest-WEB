@@ -9,12 +9,15 @@ export default function Cadastro() {
 
         <form>
           <label>Nome Completo</label>
-          <input type="text" placeholder="Seu nome heroico" />
+          <input type="text" placeholder="Seu nsome heroico" />
 
           <label>E-mail Arcano</label>
           <input type="email" placeholder="pergaminho@magia.com" />
 
           <label>Escolha sua Senha</label>
+          <input type="password" placeholder="••••••••" />
+
+          <label>Confirme sua Senha</label>
           <input type="password" placeholder="••••••••" />
 
           <button type="submit">⚔️ Iniciar Aventura</button>
@@ -29,7 +32,7 @@ export default function Cadastro() {
         </div>
 
         <p className="login">
-          Já possui um grimório? <a href="#">Retornar à Guilda</a>
+          Já possui um grimório? <a href="login">Retornar à Guilda</a>
         </p>
       </section>
     </main>
