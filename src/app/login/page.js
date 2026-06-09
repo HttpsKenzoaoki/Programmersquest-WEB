@@ -1,13 +1,23 @@
+'use client';
+
+import { useRouter } from "next/navigation";
 import "./login.css";
 
 export default function Login() {
+  const router = useRouter();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    router.push('/dashboard');
+  };
+
   return (
     <main className="login-page">
       <section className="login-card">
         <h1>Acesse seu Grimório</h1>
         <p>O caminho para sua jornada épica começa aqui.</p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <label>Nome Completo</label>
           <input type="text" placeholder="Seu nome heroico" />
 
