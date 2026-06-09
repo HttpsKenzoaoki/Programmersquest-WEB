@@ -1,23 +1,20 @@
-import "./cadastro.css";
+import "./login.css";
 
-export default function Cadastro() {
+export default function Login() {
   return (
-    <main className="cadastro-page">
-      <section className="cadastro-card">
-        <h1>Crie sua Identidade de Herói</h1>
-        <p>O primeiro passo de sua jornada épica.</p>
+    <main className="login-page">
+      <section className="login-card">
+        <h1>Acesse seu Grimório</h1>
+        <p>O caminho para sua jornada épica começa aqui.</p>
 
         <form>
           <label>Nome Completo</label>
-          <input type="text" placeholder="Seu nsome heroico" />
+          <input type="text" placeholder="Seu nome heroico" />
 
           <label>E-mail Arcano</label>
           <input type="email" placeholder="pergaminho@magia.com" />
 
-          <label>Escolha sua Senha</label>
-          <input type="password" placeholder="••••••••" />
-
-          <label>Confirme sua Senha</label>
+          <label>Coloque sua Senha</label>
           <input type="password" placeholder="••••••••" />
 
           <button type="submit">⚔️ Iniciar Aventura</button>
@@ -31,8 +28,12 @@ export default function Cadastro() {
           </div>
         </div>
 
+        <p className="recuperalogin">
+          Esqueceu sua senha? <a href="login/recuperar-senha">Retornar ao Grimório</a>
+        </p>
+
         <p className="login">
-          Já possui um grimório? <a href="login">Retornar à Guilda</a>
+          Não possui um grimório? <a href="cadastro">Retornar ao Cadastro</a>
         </p>
       </section>
     </main>
