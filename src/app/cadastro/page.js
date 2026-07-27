@@ -9,7 +9,7 @@ export default function Cadastro() {
 
         <form>
           <label>Nome Completo</label>
-          <input type="text" placeholder="Seu nsome heroico" />
+          <input type="text" placeholder="Seu nome heroico" />
 
           <label>E-mail Arcano</label>
           <input type="email" placeholder="pergaminho@magia.com" />
