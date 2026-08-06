@@ -5,7 +5,8 @@ import * as monaco from 'monaco-editor';
 import { useRouter } from 'next/navigation';
 import './primeiro-desafio.css';
 
-export default function PrimeiroDesafio() {
+export default function PrimeiroDesafioClient() {
+  
   const editorRef = useRef(null);
   const [output, setOutput] = useState('');
   const [isCorrect, setIsCorrect] = useState(null);
