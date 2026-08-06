@@ -1,47 +1,56 @@
 .missoes-page {
   min-height: 100vh;
-  background: radial-gradient(circle at top, #1f1b46, #12131d 60%);
+  background: radial-gradient(circle at 20% 30%, #1f1b46, #0a0b12 70%);
   color: #e2e1f1;
   display: flex;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .sidebar {
   width: 260px;
-  background: #1e1f2a;
-  border-right: 1px solid rgba(202, 190, 255, 0.15);
+  background: rgba(20, 21, 35, 0.95);
+  border-right: 1px solid rgba(202, 190, 255, 0.1);
   padding: 28px 20px;
   position: fixed;
   height: 100vh;
+  backdrop-filter: blur(20px);
+  z-index: 100;
 }
 
 .sidebar h1 {
   color: #cabeff;
-  font-size: 26px;
+  font-size: 24px;
   margin-bottom: 28px;
+  font-weight: 700;
 }
 
 .perfil {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(202, 190, 255, 0.06);
 }
 
 .avatar {
   width: 55px;
   height: 55px;
-  background: #333440;
+  background: linear-gradient(135deg, #6d4fd3, #3a1f8a);
   border: 2px solid #ffdb3c;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: 28px;
+  box-shadow: 0 0 30px rgba(255, 219, 60, 0.15);
 }
 
 .perfil h2 {
   font-size: 18px;
+  color: #cabeff;
 }
 
 .perfil p {
@@ -52,51 +61,64 @@
 .sidebar nav {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 }
 
 .sidebar nav a {
-  color: #c9c4d7;
-  padding: 12px;
-  border-radius: 10px;
-  cursor: pointer;
+  color: #a09bb8;
+  padding: 12px 16px;
+  border-radius: 12px;
   text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
 }
 
-.sidebar nav a:hover,
-.sidebar nav .active {
-  background: #5d3fd3;
+.sidebar nav a:hover {
+  background: rgba(93, 63, 211, 0.2);
   color: white;
+  transform: translateX(4px);
+}
+
+.sidebar nav .active {
+  background: linear-gradient(135deg, #5d3fd3, #7c5fdf);
+  color: white;
+  box-shadow: 0 4px 20px rgba(93, 63, 211, 0.3);
 }
 
 .content {
   margin-left: 260px;
-  padding: 32px;
+  padding: 32px 40px;
   width: 100%;
 }
 
 .map-header {
-  background: rgba(30, 31, 42, 0.8);
-  border: 1px solid rgba(202, 190, 255, 0.18);
-  border-radius: 20px;
-  padding: 28px;
-  margin-bottom: 28px;
-  box-shadow: inset 0 0 20px rgba(93, 63, 211, 0.18);
+  background: rgba(20, 21, 35, 0.7);
+  border: 1px solid rgba(202, 190, 255, 0.08);
+  border-radius: 24px;
+  padding: 32px 40px;
+  margin-bottom: 32px;
+  backdrop-filter: blur(10px);
 }
 
 .map-header h1 {
-  color: #cabeff;
   font-size: 38px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #cabeff, #ffdb3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .map-header p {
-  color: #c9c4d7;
-  margin-top: 8px;
+  color: #a09bb8;
+  font-size: 16px;
 }
 
 .progress-area {
-  margin-top: 18px;
-  max-width: 420px;
+  margin-top: 20px;
+  max-width: 500px;
 }
 
 .progress-area span {
@@ -106,8 +128,8 @@
 }
 
 .progress-bar {
-  height: 14px;
-  background: #333440;
+  height: 8px;
+  background: rgba(51, 52, 64, 0.6);
   border-radius: 999px;
   margin-top: 8px;
   overflow: hidden;
@@ -117,251 +139,305 @@
   width: 38%;
   height: 100%;
   background: linear-gradient(90deg, #5d3fd3, #ffdb3c);
+  border-radius: 999px;
+  transition: width 1s ease;
+}
+
+/* Container do mapa */
+.mapa-container {
+  background: rgba(12, 13, 24, 0.4);
+  border: 1px solid rgba(202, 190, 255, 0.06);
+  border-radius: 24px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
+}
+
+.mapa-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 30% 40%, rgba(93, 63, 211, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(255, 219, 60, 0.02) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .mapa {
   position: relative;
-  height: 780px;
-  background: rgba(12, 13, 24, 0.5);
-  border: 1px solid rgba(202, 190, 255, 0.15);
-  border-radius: 24px;
-  overflow: hidden;
+  height: 700px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.mapa::before {
-  content: "";
+/* SVG das linhas */
+.linhas-svg {
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(#484554 1px, transparent 1px);
-  background-size: 38px 38px;
-  opacity: 0.25;
-}
-
-.fase {
-  position: absolute;
-  z-index: 2;
-  text-align: center;
-  width: 170px;
-}
-
-.fase button {
-  width: 78px;
-  height: 78px;
-  border-radius: 50%;
-  border: none;
-  font-size: 32px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.fase button:hover {
-  transform: scale(1.08);
-}
-
-.fase h3 {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #e2e1f1;
-}
-
-.fase p {
-  font-size: 13px;
-  color: #c9c4d7;
-}
-
-.concluida button {
-  background: #ffdb3c;
-  color: #221b00;
-  box-shadow: 0 0 20px rgba(255, 219, 60, 0.35);
-}
-
-.atual button {
-  background: #5d3fd3;
-  color: white;
-  border: 4px solid #ffdb3c;
-  box-shadow: 0 0 28px rgba(202, 190, 255, 0.5);
-  animation: pulse 1.8s infinite;
-}
-
-.bloqueada {
-  opacity: 0.55;
-}
-
-.bloqueada button {
-  background: #333440;
-  color: #938ea0;
-  cursor: not-allowed;
-}
-
-.boss button {
-  border-radius: 20px;
-  width: 95px;
-  height: 95px;
-}
-
-.fase1 {
-  top: 70px;
-  left: 12%;
-}
-
-.fase2 {
-  top: 210px;
-  left: 38%;
-}
-
-.fase3 {
-  top: 360px;
-  left: 18%;
-}
-
-.fase4 {
-  top: 500px;
-  left: 48%;
-}
-
-.fase5 {
-  top: 620px;
-  left: 25%;
-}
-
-.fase6 {
-  top: 610px;
-  right: 10%;
-}
-
-.linha {
-  position: absolute;
-  height: 5px;
-  background: linear-gradient(90deg, #cabeff, #5d3fd3);
-  box-shadow: 0 0 10px rgba(202, 190, 255, 0.6);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
-  border-radius: 999px;
 }
 
-.bloqueada-linha {
-  background: #484554;
-  box-shadow: none;
+.linha-caminho {
+  stroke-dasharray: 8 8;
+  animation: flow-line 1s linear infinite;
 }
 
-.linha1 {
-  width: 270px;
-  top: 180px;
-  left: 23%;
-  transform: rotate(28deg);
+.linha-caminho.bloqueada {
+  stroke-dasharray: 4 8;
+  opacity: 0.3;
 }
 
-.linha2 {
-  width: 260px;
-  top: 320px;
-  left: 25%;
-  transform: rotate(-34deg);
-}
-
-.linha3 {
-  width: 300px;
-  top: 470px;
-  left: 30%;
-  transform: rotate(30deg);
-}
-
-.linha4 {
-  width: 260px;
-  top: 610px;
-  left: 34%;
-  transform: rotate(-25deg);
-}
-
-.linha5 {
-  width: 260px;
-  top: 665px;
-  left: 50%;
-  transform: rotate(8deg);
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 20px rgba(202, 190, 255, 0.35);
-  }
-
-  50% {
-    transform: scale(1.07);
-    box-shadow: 0 0 35px rgba(202, 190, 255, 0.65);
-  }
-
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 20px rgba(202, 190, 255, 0.35);
+@keyframes flow-line {
+  to {
+    stroke-dashoffset: -16;
   }
 }
 
-@media (max-width: 900px) {
-  .missoes-page {
-    display: block;
-  }
-
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-  }
-
-  .content {
-    margin-left: 0;
-    padding: 20px;
-  }
-
-  .map-header h1 {
-    font-size: 30px;
-  }
-
-  .mapa {
-    height: 850px;
-  }
-
-  .fase {
-    width: 140px;
-  }
-
-  .fase1 {
-    left: 8%;
-  }
-
-  .fase2 {
-    left: 48%;
-  }
-
-  .fase3 {
-    left: 10%;
-  }
-
-  .fase4 {
-    left: 46%;
-  }
-
-  .fase5 {
-    left: 8%;
-  }
-
-  .fase6 {
-    right: 4%;
-  }
-
-  .linha {
-    display: none;
-  }
+/* Cards das fases */
+.fase {
+  z-index: 2;
+  transition: all 0.3s ease;
 }
-.fase-link {
-  width: 78px;
-  height: 78px;
+
+.fase-card {
+  background: rgba(30, 31, 42, 0.8);
+  border-radius: 20px;
+  padding: 16px 20px;
+  text-align: center;
+  min-width: 140px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(202, 190, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.fase-card:hover:not(.bloqueada) {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(202, 190, 255, 0.2);
+}
+
+.fase-card.bloqueada {
+  opacity: 0.5;
+  filter: grayscale(0.5);
+}
+
+.fase-card.bloqueada:hover {
+  transform: none;
+}
+
+.fase-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.fase-icon {
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  background: #ffdb3c;
-  color: #221b00;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
-  text-decoration: none;
-  margin: auto;
-  box-shadow: 0 0 20px rgba(255, 219, 60, 0.35);
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.fase-icon-wrapper:not(.bloqueada) .fase-icon {
+  cursor: pointer;
+}
+
+.fase-icon-wrapper:not(.bloqueada) .fase-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Pulse ring da fase atual */
+.pulse-ring {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  border: 3px solid #ffdb3c;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.fase-info h3 {
+  font-size: 15px;
+  color: #e2e1f1;
+  margin: 12px 0 4px;
+  font-weight: 600;
+}
+
+.fase-info p {
+  font-size: 12px;
+  color: #8a86a0;
+  margin: 0 0 8px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(202, 190, 255, 0.08);
+  color: #8a86a0;
+}
+
+.status-badge.concluida {
+  background: rgba(255, 219, 60, 0.15);
+  color: #ffdb3c;
+}
+
+.status-badge.atual {
+  background: rgba(93, 63, 211, 0.25);
+  color: #cabeff;
+  animation: pulse-text 2s infinite;
+}
+
+.status-badge.bloqueada {
+  background: rgba(100, 100, 120, 0.15);
+  color: #6a6a7a;
+}
+
+/* Fase Boss */
+.fase.boss .fase-icon {
+  width: 90px;
+  height: 90px;
+  font-size: 40px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #ff4444, #cc0000) !important;
+  box-shadow: 0 0 40px rgba(255, 50, 50, 0.3);
+}
+
+.fase.boss .fase-card {
+  border-color: rgba(255, 50, 50, 0.15);
+  background: rgba(255, 50, 50, 0.05);
+}
+
+.fase.boss .status-badge {
+  background: rgba(255, 50, 50, 0.15);
+  color: #ff6666;
+}
+
+/* Animações */
+@keyframes pulse-text {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 16px 20px;
+  }
+
+  .sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar nav a {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 16px;
+  }
+
+  .map-header h1 {
+    font-size: 28px;
+  }
+
+  .mapa {
+    height: 600px;
+  }
+
+  .fase-card {
+    min-width: 100px;
+    padding: 12px 14px;
+  }
+
+  .fase-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+
+  .fase.boss .fase-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 30px;
+  }
+
+  .linhas-svg {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .mapa {
+    height: 500px;
+  }
+
+  .fase-card {
+    min-width: 80px;
+    padding: 8px 10px;
+  }
+
+  .fase-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  .fase.boss .fase-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+
+  .fase-info h3 {
+    font-size: 12px;
+  }
+
+  .fase-info p {
+    font-size: 10px;
+  }
+
+  .status-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+  }
+
+  .fase {
+    transform: scale(0.85);
+  }
 }

@@ -3,7 +3,7 @@
   background: radial-gradient(circle at top, #1f1b46, #12131d 60%);
   color: #e2e1f1;
   padding: 32px;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .aula-container {
@@ -20,24 +20,38 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 28px;
+  backdrop-filter: blur(10px);
 }
 
 .aula-header h1 {
   color: #cabeff;
   font-size: 38px;
+  background: linear-gradient(135deg, #cabeff, #ffdb3c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
 }
 
 .aula-header p {
   color: #c9c4d7;
+  font-size: 16px;
 }
 
-.aula-header a {
-  background: #5d3fd3;
-  color: white;
+.btn-voltar {
+  background: rgba(202, 190, 255, 0.08);
+  border: 1px solid rgba(202, 190, 255, 0.1);
+  color: #c9c4d7;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
   text-decoration: none;
-  padding: 12px 16px;
-  border-radius: 10px;
-  font-weight: bold;
+}
+
+.btn-voltar:hover {
+  background: rgba(202, 190, 255, 0.15);
+  transform: translateX(-3px);
 }
 
 .aula-grid {
@@ -53,6 +67,7 @@
   border-radius: 18px;
   padding: 28px;
   box-shadow: inset 0 0 18px rgba(93, 63, 211, 0.12);
+  backdrop-filter: blur(5px);
 }
 
 .conteudo h2,
@@ -72,8 +87,12 @@
   margin-left: 20px;
 }
 
+.conteudo ul li {
+  margin-bottom: 8px;
+}
+
 .exemplo {
-  background: #0c0d18;
+  background: rgba(12, 13, 24, 0.6);
   border: 1px solid #484554;
   border-radius: 14px;
   padding: 18px;
@@ -88,54 +107,136 @@
 pre {
   color: #ffb0d0;
   white-space: pre-wrap;
+  font-family: 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.dica-importante {
+  background: rgba(255, 219, 60, 0.05);
+  border-left: 4px solid #ffdb3c;
+  padding: 16px 20px;
+  margin-top: 24px;
+  border-radius: 8px;
+}
+
+.dica-importante h3 {
+  color: #ffdb3c;
+  margin-bottom: 8px;
+}
+
+.dica-importante code {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #cabeff;
+  font-family: 'Consolas', monospace;
+}
+
+.jogo-card {
+  display: flex;
+  flex-direction: column;
 }
 
 .pergunta {
   margin-top: 20px;
+  flex: 1;
 }
 
 .pergunta h3 {
   color: #ffdb3c;
   margin-bottom: 14px;
+  font-size: 16px;
 }
 
-.pergunta button {
+.opcao {
   display: block;
   width: 100%;
-  background: #333440;
-  color: white;
-  border: 1px solid #484554;
+  background: rgba(51, 52, 64, 0.6);
+  color: #c9c4d7;
+  border: 1px solid rgba(202, 190, 255, 0.08);
   border-radius: 10px;
-  padding: 12px;
+  padding: 12px 16px;
   margin-bottom: 10px;
   cursor: pointer;
   text-align: left;
+  transition: all 0.3s ease;
+  font-size: 14px;
 }
 
-.pergunta button:hover {
-  background: #5d3fd3;
+.opcao:hover {
+  background: rgba(93, 63, 211, 0.3);
+  border-color: rgba(93, 63, 211, 0.3);
+  transform: translateX(4px);
 }
 
-.finalizar {
+.btn-desafio {
   width: 100%;
   margin-top: 18px;
-  background: #ffdb3c;
-  color: #221b00;
+  background: linear-gradient(135deg, #5d3fd3, #7c5fdf);
+  color: white;
   border: none;
-  border-radius: 10px;
-  padding: 14px;
+  border-radius: 12px;
+  padding: 16px;
   font-weight: bold;
+  font-size: 16px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(93, 63, 211, 0.3);
 }
 
+.btn-desafio:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(93, 63, 211, 0.4);
+}
+
+.btn-desafio:active {
+  transform: translateY(0);
+}
+
+/* Responsivo */
 @media (max-width: 850px) {
+  .aula-page {
+    padding: 16px;
+  }
+
   .aula-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
   }
 
+  .aula-header h1 {
+    font-size: 28px;
+  }
+
   .aula-grid {
     grid-template-columns: 1fr;
+  }
+
+  .btn-voltar {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .aula-header h1 {
+    font-size: 24px;
+  }
+
+  .conteudo,
+  .jogo-card {
+    padding: 20px;
+  }
+
+  .opcao {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .btn-desafio {
+    padding: 14px;
+    font-size: 14px;
   }
 }
