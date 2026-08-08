@@ -1,24 +1,13 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import * as monaco from 'monaco-editor';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Editor from '@monaco-editor/react';
 import './variaveis-desafio.css';
 
-export default function VariaveisDesafioClient() {
+export default function VariaveisDesafio() {
   
-  const editorRef = useRef(null);
-  const [output, setOutput] = useState('');
-  const [isCorrect, setIsCorrect] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [showHint, setShowHint] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    monaco.languages.register({ id: 'c' });
-    
-    const editor = monaco.editor.create(editorRef.current, {
-      value: `#include <stdio.h>
+  const codigoInicial = `#include <stdio.h>
 
 int main() {
     // Declare uma variável chamada 'idade' do tipo int com valor 18
@@ -28,38 +17,23 @@ int main() {
     // Imprima as variáveis usando printf
     
     return 0;
-}`,
-      language: 'c',
-      theme: 'vs-dark',
-      automaticLayout: true,
-      fontSize: 16,
-      fontFamily: 'Consolas, monospace',
-      minimap: { enabled: false },
-      scrollBeyondLastLine: false,
-      lineNumbers: 'on',
-      roundedSelection: true,
-      padding: { top: 20 },
-    });
+}`;
 
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, function() {
-      handleRunCode();
-    });
+  const [code, setCode] = useState(codigoInicial);
+  const [output, setOutput] = useState('');
+  const [isCorrect, setIsCorrect] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+  const router = useRouter();
 
-    return function() {
-      editor.dispose();
-    };
-  }, []);
-
-  const handleRunCode = function() {
-    const editor = monaco.editor.getEditors()[0];
-    const code = editor.getValue();
+  const handleRunCode = () => {
     setIsLoading(true);
     setOutput('');
     setIsCorrect(null);
 
     setOutput('⏳ Compilando...\n');
 
-    setTimeout(function() {
+    setTimeout(() => {
       // Verificações para variáveis
       const hasMain = code.includes('main');
       const hasInclude = code.includes('#include <stdio.h>');
@@ -101,7 +75,7 @@ int main() {
           setOutput('❌ Erros encontrados:\n' + errors.join('\n') + '\n\n💡 Lembre-se da sintaxe: tipo nome = valor;');
         }
       } else {
-        var errors = [];
+        const errors = [];
         if (!hasInclude) errors.push('- Falta #include <stdio.h>');
         if (!hasMain) errors.push('- Falta int main()');
         if (!hasReturn) errors.push('- Falta return 0;');
@@ -113,33 +87,21 @@ int main() {
     }, 800);
   };
 
-  const handleClearCode = function() {
-    const editor = monaco.editor.getEditors()[0];
-    editor.setValue(`#include <stdio.h>
-
-int main() {
-    // Declare uma variável chamada 'idade' do tipo int com valor 18
-    // Declare uma variável chamada 'altura' do tipo float com valor 1.75
-    // Declare uma variável chamada 'inicial' do tipo char com valor 'A'
-    
-    // Imprima as variáveis usando printf
-    
-    return 0;
-}`);
+  const handleClearCode = () => {
+    setCode(codigoInicial);
     setOutput('');
     setIsCorrect(null);
   };
 
-  const handleShowHint = function() {
+  const handleShowHint = () => {
     setShowHint(!showHint);
   };
 
-  const handleNextLevel = function() {
+  const handleNextLevel = () => {
     router.push('/missoes');
   };
 
-  const handleCorrigirCodigo = function() {
-    const editor = monaco.editor.getEditors()[0];
+  const handleCorrigirCodigo = () => {
     const codigoCorrigido = `#include <stdio.h>
 
 int main() {
@@ -155,7 +117,7 @@ int main() {
     
     return 0;
 }`;
-    editor.setValue(codigoCorrigido);
+    setCode(codigoCorrigido);
     setOutput('');
     setIsCorrect(null);
     setShowHint(false);
@@ -164,7 +126,7 @@ int main() {
   return (
     <main className="desafio-page">
       <aside className="sidebar">
-        <h1>🧙 Programmer's Quest</h1>
+        <h1>🧙 Programmer&apos;s Quest</h1>
 
         <div className="perfil">
           <div className="avatar">🧙‍♂️</div>
@@ -188,7 +150,7 @@ int main() {
         <div className="desafio-container">
           <header className="desafio-header">
             <div className="header-left">
-              <button className="btn-back" onClick={function() { router.push('/missoes'); }}>
+              <button className="btn-back" onClick={() => router.push('/missoes')}>
                 ← Voltar
               </button>
               <div>
@@ -217,7 +179,35 @@ int main() {
                 </div>
               </div>
               <div className="editor-wrapper">
-                <div id="editor" ref={editorRef} style={{ height: '400px', width: '100%' }} />
+                <Editor
+                  height="400px"
+                  defaultLanguage="c"
+                  value={code}
+                  theme="vs-dark"
+                  onChange={(value) => setCode(value || '')}
+                  loading={
+                    <div style={{ 
+                      display: 'flex', 
+                      justifyContent: 'center', 
+                      alignItems: 'center', 
+                      height: '100%',
+                      backgroundColor: '#1e1e1e',
+                      color: '#ccc'
+                    }}>
+                      🔄 Carregando editor...
+                    </div>
+                  }
+                  options={{
+                    fontSize: 16,
+                    fontFamily: 'Consolas, monospace',
+                    minimap: { enabled: false },
+                    scrollBeyondLastLine: false,
+                    lineNumbers: 'on',
+                    roundedSelection: true,
+                    padding: { top: 20 },
+                    automaticLayout: true,
+                  }}
+                />
               </div>
             </div>
 
@@ -230,7 +220,7 @@ int main() {
                   {isCorrect === null && <span className="status-idle">⏳ Aguardando...</span>}
                 </div>
               </div>
-              <div className={'output-content' + (isCorrect === true ? ' success' : '') + (isCorrect === false ? ' error' : '')}>
+              <div className={`output-content${isCorrect === true ? ' success' : ''}${isCorrect === false ? ' error' : ''}`}>
                 {isLoading ? (
                   <div className="loading">
                     <div className="spinner"></div>
@@ -280,7 +270,7 @@ printf("Inicial: %c\\n", inicial);`}</pre>
                   <div className="success-text">
                     <h3>Parabéns!</h3>
                     <p>Você dominou a declaração e uso de variáveis em C!</p>
-                    <p className="success-detail">+200 XP • +100 Mana • 🏆 Desbloqueou: "Mestre das Variáveis"</p>
+                    <p className="success-detail">+200 XP • +100 Mana • 🏆 Desbloqueou: &quot;Mestre das Variáveis&quot;</p>
                   </div>
                 </div>
               )}
